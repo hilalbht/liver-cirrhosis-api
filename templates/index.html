@@ -1,16 +1,143 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Karaciğer Sirozu Tahmini</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<title>Klinik Parametrelere Dayalı Siroz Tahmin Sistemi</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Karaciğer Sirozu Evre Tahmini</h1>
+<div class="header-card">
+    <h1>Klinik Parametrelere Dayalı<br>Siroz Evre Tahmin Sistemi</h1>
+    <p><b>⚠️Eğitim ve klinik simülasyon amaçlıdır.</b></p>
+</div>
 
-    <label>Yaş</label>
-    <input type="range" min="0" max="100" value="50">
+<div class="section">
+    <h3>Demografik Bilgiler</h3>
+    <label for="age">Yaş</label>
+    <input type="range" id="age" min="1" max="100" value="50">
+
+    <label>Cinsiyet</label>
+    <input type="radio" name="sex" value="Female" checked> Female
+    <input type="radio" name="sex" value="Male"> Male
+</div>
+
+<div class="section">
+    <h3>Takip ve Tedavi Bilgileri</h3>
+    <label for="n_days">Takip Süresi (N_Days)</label>
+    <input type="range" id="n_days" min="0" max="5000" value="1000">
+
+    <label>Hasta Durumu (Status)</label>
+    <select id="status">
+        <option value="C">C</option>
+        <option value="CL">CL</option>
+        <option value="D">D</option>
+    </select>
+
+    <label>Uygulanan Tedavi (Drug)</label>
+    <select id="drug">
+        <option value="Placebo">Placebo</option>
+        <option value="D-penicillamine">D-penicillamine</option>
+    </select>
+</div>
+
+<div class="section">
+    <h3>Klinik Bulgular</h3>
+    <label>Ascites (Asit)</label>
+    <select id="ascites">
+        <option value="0">Yok</option>
+        <option value="1">Var</option>
+    </select>
+
+    <label>Hepatomegaly (Hepatomegali)</label>
+    <select id="hepatomegaly">
+        <option value="0">Yok</option>
+        <option value="1">Var</option>
+    </select>
+
+    <label>Spiders (Örümcek anjiyom)</label>
+    <select id="spiders">
+        <option value="0">Yok</option>
+        <option value="1">Var</option>
+    </select>
+
+    <label>Edema (Ödem)</label>
+    <select id="edema">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+</div>
+
+<div class="section">
+    <h3>Laboratuvar Bulguları</h3>
+    <label>Bilirubin</label>
+    <input type="range" id="bilirubin" min="0.1" max="30" value="1" step="0.1">
+
+    <label>Cholesterol</label>
+    <input type="range" id="cholesterol" min="100" max="500" value="250">
+
+    <label>Albumin</label>
+    <input type="range" id="albumin" min="1" max="6" value="3.5" step="0.1">
+
+    <label>Copper</label>
+    <input type="range" id="copper" min="0" max="300" value="50">
+
+    <label>Alk_Phos</label>
+    <input type="range" id="alk_phos" min="50" max="3000" value="500">
+
+    <label>SGOT</label>
+    <input type="range" id="sgot" min="10" max="500" value="50">
+
+    <label>Tryglicerides</label>
+    <input type="range" id="trig" min="50" max="500" value="150">
+
+    <label>Platelets</label>
+    <input type="range" id="platelets" min="50" max="500" value="250">
+
+    <label>Prothrombin</label>
+    <input type="range" id="prothrombin" min="8" max="20" value="12" step="0.1">
+</div>
+
+<button onclick="predict()">EVRE TAHMİNİ YAP</button>
+
+<div id="result" class="result-card" style="display:none;">
+    <h2>Tahmin Edilen Siroz Evresi</h2>
+    <h1 id="stage">Stage ?</h1>
+</div>
+
+<script>
+function predict() {
+    const data = {
+        Age: parseInt(document.getElementById("age").value),
+        Sex: document.querySelector('input[name="sex"]:checked').value,
+        N_Days: parseInt(document.getElementById("n_days").value),
+        Status: document.getElementById("status").value,
+        Drug: document.getElementById("drug").value,
+        Ascites: parseInt(document.getElementById("ascites").value),
+        Hepatomegaly: parseInt(document.getElementById("hepatomegaly").value),
+        Spiders: parseInt(document.getElementById("spiders").value),
+        Edema: parseInt(document.getElementById("edema").value),
+        Bilirubin: parseFloat(document.getElementById("bilirubin").value),
+        Cholesterol: parseFloat(document.getElementById("cholesterol").value),
+        Albumin: parseFloat(document.getElementById("albumin").value),
+        Copper: parseFloat(document.getElementById("copper").value),
+        Alk_Phos: parseFloat(document.getElementById("alk_phos").value),
+        SGOT: parseFloat(document.getElementById("sgot").value),
+        Tryglicerides: parseFloat(document.getElementById("trig").value),
+        Platelets: parseFloat(document.getElementById("platelets").value),
+        Prothrombin: parseFloat(document.getElementById("prothrombin").value)
+    };
+
+    // Burada backend API çağrısı yapılacak
+    // fetch('/predict', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)})
+    // .then(response => response.json())
+    // .then(result => { document.getElementById("stage").innerText = "Stage " + result.stage; document.getElementById("result").style.display="block"; });
+
+    alert("Tahmin API entegrasyonu burada yapılacak!");
+    document.getElementById("result").style.display = "block";
+}
+</script>
 
 </body>
 </html>

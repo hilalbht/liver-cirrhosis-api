@@ -1,9 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    padding: 40px;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle, rgba(80,129,148,1) 0%, rgba(66,168,146,1) 100%);
+    margin: 0;
+    padding: 20px;
+    color: #0f2a44;
 }
 
-h1 {
-    color: #333;
+.header-card {
+    background: rgba(15,42,68,0.65);
+    padding: 30px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.35);
+    margin-bottom: 30px;
+}
+
+h1, h2, h3 {
+    margin: 10px 0;
+}
+
+.section {
+    background: rgba(15,42,68,0.5);
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+
+.section label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+input[type=range] {
+    width: 100%;
+    margin: 8px 0 20px 0;
+}
+
+select, input[type=radio] {
+    margin: 8px 0 20px 0;
+}
+
+button {
+    background: linear-gradient(135deg, #111827, #1f2933);
+    color: white;
+    padding: 20px 60px;
+    border: none;
+    border-radius: 22px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 12px 40px rgba(0,0,0,0.45);
+    margin-top: 20px;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.result-card {
+    background: linear-gradient(135deg, #0f2a44, #123a5f);
+    padding: 20px;
+    border-radius: 18px;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
 }
